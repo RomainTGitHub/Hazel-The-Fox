@@ -211,6 +211,13 @@ body {
     animation: float 4s ease-in-out infinite;
 }
 
+/* Style pour l'élément de la galerie mis en surbrillance */
+.gallery-item-highlighted {
+    position: relative; /* Nécessaire pour que z-index fonctionne */
+    z-index: 45;
+}
+
+
 @media (min-width: 768px) { /* md breakpoint de Tailwind */
     #lofi-player {
         width: 300px;
