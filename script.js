@@ -28,14 +28,65 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `,
         gallery: `
-            <div>
-                <h1 class="text-4xl font-bold mb-8 text-center">Galerie d'images</h1>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    ${Array.from({length: 12}).map((_, i) => `
+            <div class="w-full">
+                <!-- Section Hazel -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold mb-6 text-center text-[#EAE0D5]">Hazel</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <!-- Remplacez les src par les chemins vers vos images -->
                         <div class="group overflow-hidden rounded-lg shadow-lg">
-                            <img src="https://placehold.co/600x400/c4b8ab/4d4030?text=Photo+${i + 1}" alt="Photo ${i + 1}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                            <img src="https://placehold.co/600x400/c4b8ab/4d4030?text=Hazel+1" alt="Photo Hazel 1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
                         </div>
-                    `).join('')}
+                        <div class="group overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/c4b8ab/4d4030?text=Hazel+2" alt="Photo Hazel 2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                        </div>
+                        <div class="group overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/c4b8ab/4d4030?text=Hazel+3" alt="Photo Hazel 3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                        </div>
+                        <div class="group overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/c4b8ab/4d4030?text=Hazel+4" alt="Photo Hazel 4" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Hela -->
+                <div class="mb-12">
+                    <h2 class="text-3xl font-bold mb-6 text-center text-[#EAE0D5]">Hela</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <!-- Remplacez les src par les chemins vers vos images -->
+                        <div class="group overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/a08c7d/ffffff?text=Hela+1" alt="Photo Hela 1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                        </div>
+                        <div class="group overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/a08c7d/ffffff?text=Hela+2" alt="Photo Hela 2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                        </div>
+                        <div class="group overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/a08c7d/ffffff?text=Hela+3" alt="Photo Hela 3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                        </div>
+                        <div class="group overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/a08c7d/ffffff?text=Hela+4" alt="Photo Hela 4" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Kaia -->
+                <div>
+                    <h2 class="text-3xl font-bold mb-6 text-center text-[#EAE0D5]">Kaia</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <!-- Remplacez les src par les chemins vers vos images -->
+                        <div class="group overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/6b5a47/EAE0D5?text=Kaia+1" alt="Photo Kaia 1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                        </div>
+                        <div class="group overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/6b5a47/EAE0D5?text=Kaia+2" alt="Photo Kaia 2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                        </div>
+                        <div class="group overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/6b5a47/EAE0D5?text=Kaia+3" alt="Photo Kaia 3" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                        </div>
+                        <div class="group overflow-hidden rounded-lg shadow-lg">
+                            <img src="https://placehold.co/600x400/6b5a47/EAE0D5?text=Kaia+4" alt="Photo Kaia 4" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 cursor-pointer">
+                        </div>
+                    </div>
                 </div>
             </div>
         `,
