@@ -1,3 +1,7 @@
+/* Définition de la couleur de fond principale */
+body {
+    background-color: #d2c8be; /* Marron clair */
+}
 
 /* Style pour une transition douce du contenu */
 #content-area > div {
@@ -17,6 +21,7 @@
 
 /* Style pour le bouton actif dans le menu */
 .nav-button.active {
-    background-color: #3B82F6; /* Correspond à blue-500 dans Tailwind */
+    background-color: #a08c7d; /* Marron plus foncé pour le contraste */
     color: white;
 }
+
