@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `,
         lore: `
             <div class="text-[#EAE0D5]">
-                <h1 class="text-4xl lg:text-5xl font-bold mb-12 text-center">Lore des Personnages</h1>
+                <h1 class="text-4xl lg:text-5xl font-bold mb-12 text-center">Lore</h1>
                 <div class="max-w-5xl mx-auto space-y-12">
 
                     <!-- Section Hazel -->

@@ -1,6 +1,7 @@
-/* Définition de la couleur de fond principale */
+/* Définition de la couleur de fond principale et de la police */
 body {
     background-image: linear-gradient(45deg, #5E4742 0%, #99846B 100%, #FFFFFF 100%);
+    font-family: 'Fraunces', serif;
 }
 
 /* Style pour une transition douce du contenu */
@@ -211,13 +212,6 @@ body {
     animation: float 4s ease-in-out infinite;
 }
 
-/* Style pour l'élément de la galerie mis en surbrillance */
-.gallery-item-highlighted {
-    position: relative; /* Nécessaire pour que z-index fonctionne */
-    z-index: 45;
-}
-
-
 @media (min-width: 768px) { /* md breakpoint de Tailwind */
     #lofi-player {
         width: 300px;
@@ -226,3 +220,10 @@ body {
         right: 20px;
     }
 }
+
+/* Style pour l'élément de la galerie mis en surbrillance */
+.gallery-item-highlighted {
+    position: relative; /* Nécessaire pour que z-index fonctionne */
+    z-index: 45;
+}
+
