@@ -1,0 +1,22 @@
+
+/* Style pour une transition douce du contenu */
+#content-area > div {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Style pour le bouton actif dans le menu */
+.nav-button.active {
+    background-color: #3B82F6; /* Correspond à blue-500 dans Tailwind */
+    color: white;
+}

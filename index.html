@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hazel The Fox</title>
+    <!-- Intégration de Tailwind CSS pour le style de base -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lien vers votre feuille de style personnalisée -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-white font-sans antialiased">
+
+    <div id="app" class="min-h-screen flex flex-col">
+
+        <!-- En-tête de navigation -->
+        <header class="bg-gray-800 shadow-lg sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-white">Hazel The Fox</a>
+                <div class="flex items-center space-x-2">
+                    <button data-page="home" class="nav-button active px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300">Home</button>
+                    <button data-page="gallery" class="nav-button px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300">Gallery</button>
+                    <button data-page="lore" class="nav-button px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300">Lore</button>
+                    <button data-page="social" class="nav-button px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300">Socials</button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Conteneur principal pour le contenu dynamique -->
+        <main id="content-area" class="flex-grow container mx-auto p-8">
+            <!-- Le contenu sera injecté ici par JavaScript -->
+        </main>
+
+        <!-- Pied de page -->
+        <footer class="bg-gray-800 text-center py-4 mt-auto">
+            <p>&copy; 2025 Hazel. All Right Reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Lien vers votre fichier JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
