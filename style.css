@@ -1,0 +1,137 @@
+/* Définition de la couleur de fond principale */
+body {
+    background-image: linear-gradient(45deg, #5E4742 0%, #99846B 100%, #FFFFFF 100%);
+}
+
+/* Style pour une transition douce du contenu */
+#content-area > div {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style pour le bouton actif dans le menu */
+.nav-button.active {
+    background-color: rgba(234, 224, 213, 0.7); /* Fond marron clair semi-transparent */
+    color: #4d4030; /* Police marron foncé pour le contraste */
+    font-weight: 600; /* Police un peu plus grasse pour le démarquer */
+}
+
+/* Animation de pluie */
+.rain-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permet de cliquer à travers */
+    z-index: -1; /* Place l'animation derrière le contenu */
+}
+
+.rain-container i {
+    position: absolute;
+    bottom: 100%;
+    width: 1.5px;
+    height: 80px;
+    background: linear-gradient(transparent, rgba(234, 224, 213, 0.4));
+    animation: rain-fall linear infinite;
+    opacity: 0;
+}
+
+@keyframes rain-fall {
+    0% { transform: translate(0, 0) rotate(-10deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translate(-20vw, 110vh) rotate(-10deg); opacity: 0; }
+}
+
+/* Distribution et randomisation des gouttes de pluie */
+.rain-container i:nth-child(1) { left: 10%; animation-duration: 1.2s; animation-delay: 0.1s; }
+.rain-container i:nth-child(2) { left: 25%; animation-duration: 1.5s; animation-delay: 0.3s; }
+.rain-container i:nth-child(3) { left: 5%;  animation-duration: 1.1s; animation-delay: 0.8s; }
+.rain-container i:nth-child(4) { left: 50%; animation-duration: 1.3s; animation-delay: 0.5s; }
+.rain-container i:nth-child(5) { left: 70%; animation-duration: 1.6s; animation-delay: 0.2s; }
+.rain-container i:nth-child(6) { left: 90%; animation-duration: 1.2s; animation-delay: 0.9s; }
+.rain-container i:nth-child(7) { left: 80%; animation-duration: 1.4s; animation-delay: 0.4s; }
+.rain-container i:nth-child(8) { left: 40%; animation-duration: 1.0s; animation-delay: 0.7s; }
+.rain-container i:nth-child(9) { left: 60%; animation-duration: 1.7s; animation-delay: 0.1s; }
+.rain-container i:nth-child(10) { left: 15%; animation-duration: 1.3s; animation-delay: 0.6s; }
+.rain-container i:nth-child(11) { left: 35%; animation-duration: 1.5s; animation-delay: 1s; }
+.rain-container i:nth-child(12) { left: 55%; animation-duration: 1.1s; animation-delay: 0.2s; }
+.rain-container i:nth-child(13) { left: 75%; animation-duration: 1.4s; animation-delay: 0.5s; }
+.rain-container i:nth-child(14) { left: 95%; animation-duration: 1.6s; animation-delay: 0.8s; }
+.rain-container i:nth-child(15) { left: 20%; animation-duration: 1.2s; animation-delay: 1.1s; }
+.rain-container i:nth-child(16) { left: 45%; animation-duration: 1.3s; animation-delay: 0.3s; }
+.rain-container i:nth-child(17) { left: 65%; animation-duration: 1.5s; animation-delay: 0.7s; }
+.rain-container i:nth-child(18) { left: 85%; animation-duration: 1.1s; animation-delay: 0.4s; }
+.rain-container i:nth-child(19) { left: 30%; animation-duration: 1.6s; animation-delay: 0.9s; }
+.rain-container i:nth-child(20) { left: 2%;  animation-duration: 1.4s; animation-delay: 0.0s; }
+
+/* Style pour le lecteur radio Lo-Fi responsive */
+#lofi-player {
+    position: fixed;
+    z-index: 100;
+    border: 2px solid rgba(234, 224, 213, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    width: 250px;
+    height: 141px;
+    bottom: 10px;
+    right: 10px;
+}
+
+#lofi-player iframe {
+    display: block;
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+}
+
+/* Animation et style du menu mobile */
+#mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, padding-top 0.5s ease-in-out, padding-bottom 0.5s ease-in-out, border-top-width 0.3s ease-in-out;
+    border-top: 0px solid rgba(234, 224, 213, 0.2);
+}
+
+#mobile-menu.open {
+    max-height: 300px; /* Hauteur suffisante pour les boutons */
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+    border-top-width: 1px;
+}
+
+/* Couleur du texte pour les boutons du menu mobile */
+#mobile-menu .nav-button {
+    color: #a08c7d; /* Un marron clair qui correspond aux bordures des cartes */
+}
+#mobile-menu .nav-button:hover {
+    color: #EAE0D5; /* Revient à la couleur claire originale au survol */
+}
+/* Le bouton actif doit conserver son style spécifique */
+#mobile-menu .nav-button.active {
+    color: #4d4030;
+}
+
+@media (min-width: 768px) { /* md breakpoint de Tailwind */
+    #lofi-player {
+        width: 300px;
+        height: 169px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
