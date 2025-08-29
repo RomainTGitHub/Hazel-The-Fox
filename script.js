@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createGalleryHTML(galleryName, galleryData) {
         return `
             <div class="mb-12">
-                <h2 class="text-3xl font-bold mb-6 text-center text-[#EAE0D5] capitalize flex items-center justify-center">
+                <h2 class="text-5xl font-bold mt-10 mb-10 text-center text-[#EAE0D5] capitalize flex items-center justify-center">
                     <img src="${galleryData.icon}" alt="Icone ${galleryName}" class="w-10 h-10 rounded-full mr-4 border-2 border-[#EAE0D5]/50">
                     <span>${galleryName}</span>
                 </h2>
