@@ -1,7 +1,8 @@
 /* Définition de la couleur de fond principale */
 body {
-    background-color: #d2c8be; /* Marron clair */
-}
+background-image:linear-gradient(45deg, #5E4742 0%, #99846B 100%, #FFFFFF 100%
+100%
+);}
 
 /* Style pour une transition douce du contenu */
 #content-area > div {
