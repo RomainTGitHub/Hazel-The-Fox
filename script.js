@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const pageContent = {
         home: `
-            <div class="flex items-center justify-center min-h-full py-12">
+            <div class="flex items-center justify-center h-full">
                 <div class="w-full max-w-2xl mx-auto bg-[#f5f0e9]/75 rounded-2xl shadow-xl p-8 backdrop-blur-sm border border-[#a08c7d]">
                     <div class="flex flex-col md:flex-row items-center">
                         <!-- Colonne de l'image -->
