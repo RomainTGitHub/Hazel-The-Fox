@@ -144,29 +144,62 @@ body {
 .rain-container i:nth-child(19) { left: 30%; animation-duration: 1.6s; animation-delay: 0.9s; }
 .rain-container i:nth-child(20) { left: 2%;  animation-duration: 1.4s; animation-delay: 0.0s; }
 
-/* Style pour le lecteur radio Lo-Fi responsive */
+/* Style pour le lecteur radio Lo-Fi responsive et déplaçable */
 #lofi-player {
     position: fixed;
     z-index: 100;
-    border: 2px solid rgba(234, 224, 213, 0.5);
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 8px;
+    border: none;
+    background-color: transparent;
+    padding: 0;
     border-radius: 12px;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
     width: 250px;
     height: 141px;
     bottom: 40px;
     right: 10px;
+    overflow: visible; /* Changé pour voir la poignée si elle dépasse */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Règle cruciale : désactive les événements de la souris sur l'iframe LORSQUE le déplacement est en cours */
+#lofi-player.dragging iframe {
+    pointer-events: none;
 }
 
 #lofi-player iframe {
     display: block;
-    border-radius: 6px;
+    border-radius: 12px;
     width: 100%;
     height: 100%;
 }
+
+/* ÉTAPE 3: Style de la poignée de déplacement */
+.lofi-drag-handle {
+    position: absolute;
+    top: -28px; /* Positionne la poignée au-dessus du lecteur */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 28px;
+    background-color: rgba(0, 0, 0, 0.4);
+    cursor: move;
+    z-index: 101; /* Doit être au-dessus de l'iframe */
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.lofi-drag-handle svg {
+    width: 24px;
+    height: 24px;
+    transform: rotate(90deg);
+}
+
 
 /* Animation et style du menu mobile */
 #mobile-menu {
@@ -212,7 +245,8 @@ body {
     animation: float 4s ease-in-out infinite;
 }
 
-@media (min-width: 768px) { /* md breakpoint de Tailwind */
+/* Le lecteur passe à sa taille supérieure à partir de 1024px pour éviter de chevaucher le contenu sur tablette */
+@media (min-width: 1024px) { /* lg breakpoint de Tailwind, anciennement md (768px) */
     #lofi-player {
         width: 300px;
         height: 169px;

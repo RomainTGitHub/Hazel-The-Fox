@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     After several months of adventurous living, Hazel decided to take a new path. She had tasted the thrill of battle, the joy of discovery, and now she sought a new way to express herself in this world that fascinated her so much. That’s when she discovered photography, an art that allowed her to capture the beauty of the landscapes and beings around her. Enchanted by this human form of magic, she began to travel across Eorzea with her camera, immortalizing the moments and people she encountered.
                                 </p>
                                 <p>
-                                    Hazel quickly became a talented photographer, known for her images that seemed to capture the very soul of her subjects. She opened a small studio in Gridania, where adventurers would come to be photographed before setting off on new quests. But that wasn’t all; Hazel also found another refuge—a small café tucked away in a quiet alley of the city. There, between photo sessions, she worked as a waitress, serving drinks to customers and sharing tales of her adventures.
+                                    Hazel quickly became a talented photographer, known for her images that seemed to capture the very soul of her subjects. She opened a small studio in Gridania, where adventurers would come to be photographed before setting off on new quests. But that’t all; Hazel also found another refuge—a small café tucked away in a quiet alley of the city. There, between photo sessions, she worked as a waitress, serving drinks to customers and sharing tales of her adventures.
                                 </p>
                                 <p>
                                     Despite her busy life, Hazel never forgot her divine roots. On nights when the moon was full, she would return to the forest, where she would take her fox form again, running through the woods with her tail flowing behind her and her ears perked up toward the starry sky.
@@ -218,10 +218,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentArea = document.getElementById('content-area');
     const allNavButtons = document.querySelectorAll('.nav-button');
     const galleryOverlay = document.getElementById('gallery-overlay');
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const rainAudio = document.getElementById('rain-audio');
+    const clickSound = document.getElementById('click-sound');
+
+    // --- Logique de déblocage audio ---
+    function unlockAllAudio() {
+        if (rainAudio && rainAudio.paused) {
+            rainAudio.play().catch(() => {});
+        }
+        if (clickSound) {
+            clickSound.play().then(() => {
+                clickSound.pause();
+                clickSound.currentTime = 0;
+            }).catch(() => {});
+        }
+        document.body.removeEventListener('click', unlockAllAudio);
+        document.body.removeEventListener('touchend', unlockAllAudio);
+    }
+    document.body.addEventListener('click', unlockAllAudio);
+    document.body.addEventListener('touchend', unlockAllAudio);
+
+
+    // --- Logique du son de clic ---
+    function playClickSound() {
+        if (clickSound) {
+            clickSound.volume = 0.5;
+            clickSound.currentTime = 0;
+            const playPromise = clickSound.play();
+
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.error("Erreur de lecture audio :", error);
+                });
+            }
+        }
+    }
 
     // --- Logique de survol de la galerie ---
     contentArea.addEventListener('mouseover', (e) => {
-        // Vérifie si l'élément survolé est une image dans un groupe de galerie
         if (e.target.tagName === 'IMG' && e.target.closest('.group')) {
             galleryOverlay.classList.add('bg-black/60');
             e.target.closest('.group').classList.add('gallery-item-highlighted');
@@ -229,7 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     contentArea.addEventListener('mouseout', (e) => {
-        // Vérifie si la souris quitte une image dans un groupe de galerie
         if (e.target.tagName === 'IMG' && e.target.closest('.group')) {
             galleryOverlay.classList.remove('bg-black/60');
             e.target.closest('.group').classList.remove('gallery-item-highlighted');
@@ -264,7 +301,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lightbox.appendChild(lightboxNext);
 
     function showImage(gallery, index) {
-        // Accède maintenant à la propriété 'images'
         const images = galleries[gallery].images;
         if (!images || index < 0 || index >= images.length) {
             return;
@@ -320,12 +356,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Fin de la logique Lightbox ---
 
-    const hamburgerButton = document.getElementById('hamburger-button');
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    const closeIcon = document.getElementById('close-icon');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const rainAudio = document.getElementById('rain-audio');
-
     function renderContent(page) {
         contentArea.classList.remove('flex', 'items-center', 'justify-center');
         if (page === 'home') {
@@ -342,6 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     allNavButtons.forEach(button => {
         button.addEventListener('click', (event) => {
+            playClickSound();
             const page = event.currentTarget.dataset.page;
             renderContent(page);
             if (mobileMenu.classList.contains('open')) {
@@ -353,6 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     hamburgerButton.addEventListener('click', () => {
+        playClickSound();
         mobileMenu.classList.toggle('open');
         hamburgerIcon.classList.toggle('hidden');
         closeIcon.classList.toggle('hidden');
@@ -362,15 +394,94 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (rainAudio) {
         rainAudio.volume = 0.15;
-        let playPromise = rainAudio.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.warn("La lecture automatique a été bloquée. Le son démarrera après une interaction.");
-                document.body.addEventListener('click', () => {
-                   rainAudio.play();
-                }, { once: true });
-            });
-        }
     }
+
+    // --- Logique pour le lecteur Lo-Fi déplaçable ---
+    const lofiPlayer = document.getElementById('lofi-player');
+    
+    // ÉTAPE 1: Créer dynamiquement une poignée de déplacement
+    const dragHandle = document.createElement('div');
+    dragHandle.className = 'lofi-drag-handle';
+    dragHandle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>`;
+    lofiPlayer.appendChild(dragHandle);
+
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    function initializeDragPosition() {
+        const rect = lofiPlayer.getBoundingClientRect();
+        lofiPlayer.style.top = `${rect.top}px`;
+        lofiPlayer.style.left = `${rect.left}px`;
+        lofiPlayer.style.bottom = 'auto';
+        lofiPlayer.style.right = 'auto';
+    }
+
+    const startDrag = (e) => {
+        if (lofiPlayer.style.top === '') {
+            initializeDragPosition();
+        }
+
+        isDragging = true;
+        lofiPlayer.classList.add('dragging');
+
+        const rect = lofiPlayer.getBoundingClientRect();
+        
+        if (e.type === 'mousedown') {
+            offsetX = e.clientX - rect.left;
+            offsetY = e.clientY - rect.top;
+        } else { // touchstart
+            offsetX = e.touches[0].clientX - rect.left;
+            offsetY = e.touches[0].clientY - rect.top;
+        }
+
+        document.addEventListener('mousemove', onDrag);
+        document.addEventListener('touchmove', onDrag, { passive: false });
+        document.addEventListener('mouseup', endDrag);
+        document.addEventListener('touchend', endDrag);
+    };
+
+    const onDrag = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        let currentX, currentY;
+        if (e.type === 'mousemove') {
+            currentX = e.clientX;
+            currentY = e.clientY;
+        } else { // touchmove
+            currentX = e.touches[0].clientX;
+            currentY = e.touches[0].clientY;
+        }
+
+        let newLeft = currentX - offsetX;
+        let newTop = currentY - offsetY;
+        
+        const playerWidth = lofiPlayer.offsetWidth;
+        const playerHeight = lofiPlayer.offsetHeight;
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        if (newLeft < 0) newLeft = 0;
+        if (newTop < 0) newTop = 0;
+        if (newLeft + playerWidth > viewportWidth) newLeft = viewportWidth - playerWidth;
+        if (newTop + playerHeight > viewportHeight) newTop = viewportHeight - playerHeight;
+
+        lofiPlayer.style.left = `${newLeft}px`;
+        lofiPlayer.style.top = `${newTop}px`;
+    };
+
+    const endDrag = () => {
+        if (!isDragging) return;
+        isDragging = false;
+        lofiPlayer.classList.remove('dragging');
+        document.removeEventListener('mousemove', onDrag);
+        document.removeEventListener('touchmove', onDrag);
+        document.removeEventListener('mouseup', endDrag);
+        document.removeEventListener('touchend', endDrag);
+    };
+    
+    // ÉTAPE 4: Attacher les écouteurs UNIQUEMENT à la poignée
+    dragHandle.addEventListener('mousedown', startDrag);
+    dragHandle.addEventListener('touchstart', startDrag);
 });
 
